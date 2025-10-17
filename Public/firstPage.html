@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Player and Follower Game</title>
+</head>
+<body>
+  <h1>Check the Console for Output</h1>
+
+  <script>
+    // Actor class
+class Actor {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+
+// Player class extends Actor
+class Player extends Actor {
+  constructor(startX, startY, hp) {
+    super(startX, startY); // calls Actor constrcutor 
+    this.hp = hp; // save hit points
+  }
+
+  move(newX, newY) {
+    this.x = newX;
+    this.y = newY;
+  }
+}
+
+// Follower class extends Actor
+class Follower extends Actor {
+  constructor(startX, startY, player) {
+    super(startX, startY); // calls Actor constrcutor
+    this.player = player;  // save to players
+  }
+
+  // make follower match players position
+  follow() {
+    this.x = this.player.x;
+    this.y = this.player.y;
+  }
+}
+
+
+const boy1 = new Player(0, 0, 200); // player starts at (0,0) with 200 hp
+const boy2 = new Follower(5, 5, boy1); // follower starts at (5,5) following boy1
+
+console.log("Initial:");
+console.log("Player:", boy1);
+console.log("Follower:", boy2);
+
+// Move the player
+boy1.move(10, 20);
+
+// Follower updates position in move and follows 
+boy2.follow();
+
+console.log("\nAfter moving player and calling follow:");
+console.log("Player:", boy1);
+console.log("Follower:", boy2);
+</script>
+</body>
+</html>
